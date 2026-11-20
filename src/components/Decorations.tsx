@@ -114,10 +114,12 @@ export function SoftGlow({
   className = "pointer-events-none absolute",
   color = "rgba(180,30,120,0.35)",
   size = 400,
+  style,
 }: {
   className?: string;
   color?: string;
   size?: number;
+  style?: CSSProperties;
 }) {
   return (
     <div
@@ -130,6 +132,7 @@ export function SoftGlow({
         background: `radial-gradient(circle, ${color} 0%, transparent 70%)`,
         filter: "blur(40px)",
         transform: "translateZ(0)",
+        ...style,
       }}
     />
   );
