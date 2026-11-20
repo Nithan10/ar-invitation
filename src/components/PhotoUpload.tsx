@@ -29,9 +29,8 @@ function UniqueRoyalFrame({ children }: { children: React.ReactNode }) {
       <div
         className="pointer-events-none absolute -inset-6 rounded-3xl"
         style={{
-          background: "radial-gradient(circle at 50% 45%, rgba(255,208,96,0.2) 0%, rgba(225,29,72,0.14) 40%, transparent 70%)",
-          filter: "blur(24px)",
-          animation: "halo-breathe 4s ease-in-out infinite",
+          background: "radial-gradient(circle at 50% 45%, rgba(255,208,96,0.22) 0%, rgba(225,29,72,0.14) 38%, transparent 68%)",
+          transform: "translateZ(0)",
         }}
       />
 

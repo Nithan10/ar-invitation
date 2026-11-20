@@ -4,7 +4,7 @@ import type { CSSProperties } from "react";
 type Props = { count?: number; seed?: number; className?: string; gold?: boolean };
 
 /** Lightweight CSS-only floating dust / golden motes. */
-export default function DustParticles({ count = 22, seed = 11, className = "", gold = false }: Props) {
+export default function DustParticles({ count = 12, seed = 11, className = "", gold = false }: Props) {
   const rand = seeded(seed);
   const motes = Array.from({ length: count }, () => {
     const size = Math.round((2 + rand() * (gold ? 5 : 4)) * 10) / 10;

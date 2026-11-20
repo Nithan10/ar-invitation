@@ -8,7 +8,7 @@ import { fadeUp, stagger } from "@/lib/animations";
 export function Reveal({
   children,
   className = "",
-  gap = 0.14,
+  gap = 0.12,
   delay = 0,
   as = "div",
 }: {
@@ -25,7 +25,7 @@ export function Reveal({
       variants={stagger(gap, delay)}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, amount: 0.25 }}
+      viewport={{ once: true, amount: 0.08, margin: "0px 0px -40px 0px" }}
     >
       {children}
     </Tag>

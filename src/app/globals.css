@@ -40,20 +40,31 @@ body {
   font-family: var(--font-sans);
   overflow-x: hidden;
   background-color: #060409;
-  /* Multi-layer aurora-like ambient glows */
+  -webkit-overflow-scrolling: touch;
+}
+
+.vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  transform: translateZ(0);
   background-image:
     radial-gradient(ellipse 80% 50% at 50% 10%, rgba(120, 20, 60, 0.45) 0%, transparent 60%),
     radial-gradient(circle at 85% 70%, rgba(255, 185, 0, 0.14) 0%, transparent 45%),
     radial-gradient(circle at 15% 60%, rgba(80, 10, 100, 0.28) 0%, transparent 50%),
     radial-gradient(circle at 50% 95%, rgba(200, 30, 60, 0.18) 0%, transparent 50%),
     var(--tex-grain);
-  background-size: auto, auto, auto, auto, auto;
-  background-attachment: fixed;
 }
 
 body.locked {
   overflow: hidden;
   height: 100dvh;
+}
+
+button, a, [role="button"] {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 ::selection {

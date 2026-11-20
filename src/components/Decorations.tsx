@@ -6,24 +6,23 @@
 import type { CSSProperties } from "react";
 import { seeded } from "@/lib/random";
 
-/** Pre-computed star positions (deterministic, SSR-safe) */
-const STARS = Array.from({ length: 55 }, (_, i) => {
+/** Pre-computed star positions (deterministic, SSR-safe, lightweight 22 stars) */
+const STARS = Array.from({ length: 22 }, (_, i) => {
   const r = seeded(i * 7 + 3);
   return {
     x: Math.round(r() * 10000) / 100,         // 0–100 %
     y: Math.round(r() * 10000) / 100,
-    size: Math.round((0.8 + r() * 2.2) * 10) / 10,
-    delay: Math.round(r() * 60) / 10,
-    dur: Math.round((3 + r() * 5) * 10) / 10,
-    bright: Math.round((0.3 + r() * 0.65) * 100) / 100,
+    size: Math.round((0.8 + r() * 1.8) * 10) / 10,
+    delay: Math.round(r() * 40) / 10,
+    dur: Math.round((3 + r() * 4) * 10) / 10,
+    bright: Math.round((0.35 + r() * 0.55) * 100) / 100,
   };
 });
 
 /** Constellation line pairs (index into STARS) */
 const LINES: [number, number][] = [
   [0, 4], [4, 9], [9, 14], [14, 2],
-  [7, 11], [11, 18], [18, 23],
-  [30, 35], [35, 40], [40, 45],
+  [7, 11], [11, 18],
   [3, 8], [8, 13],
 ];
 
@@ -109,7 +108,7 @@ export function CornerFlourishes({ className = "pointer-events-none absolute ins
   );
 }
 
-/** Soft radial glow (no hard edges, fully blurred — safe replacement for orbs) */
+/** Soft radial glow (natively feathered gradient without expensive GPU blur filter) */
 export function SoftGlow({
   className = "pointer-events-none absolute",
   color = "rgba(180,30,120,0.35)",
@@ -129,9 +128,9 @@ export function SoftGlow({
         width: size,
         height: size,
         borderRadius: "50%",
-        background: `radial-gradient(circle, ${color} 0%, transparent 70%)`,
-        filter: "blur(40px)",
+        background: `radial-gradient(circle at center, ${color} 0%, transparent 68%)`,
         transform: "translateZ(0)",
+        contain: "paint",
         ...style,
       }}
     />

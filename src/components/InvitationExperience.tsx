@@ -21,8 +21,11 @@ export default function InvitationExperience() {
   // No scrolling while the envelope is sealed
   useEffect(() => {
     document.body.classList.toggle("locked", stage === "sealed");
-    window.scrollTo({ top: 0 });
-    if (stage === "revealed") requestAnimationFrame(() => ScrollTrigger.refresh());
+    if (stage === "sealed") {
+      window.scrollTo({ top: 0 });
+    } else {
+      requestAnimationFrame(() => ScrollTrigger.refresh());
+    }
     return () => document.body.classList.remove("locked");
   }, [stage]);
 

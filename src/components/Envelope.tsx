@@ -14,7 +14,12 @@ const FLAP = "polygon(0 0, 100% 0, 50.6% 100%, 49.4% 100%)";
  */
 export default function Envelope({ onSealClick, disabled }: Props) {
   return (
-    <div className="env-stage relative mx-auto aspect-[3/2] w-[min(92vw,580px,calc((100dvh-260px)*1.5))] min-w-[270px] max-w-[94vw] [perspective:1400px]">
+    <div
+      onClick={!disabled ? onSealClick : undefined}
+      className={`env-stage relative mx-auto aspect-[3/2] w-[min(92vw,580px,calc((100dvh-260px)*1.5))] min-w-[270px] max-w-[94vw] [perspective:1400px] ${
+        !disabled ? "cursor-pointer" : ""
+      }`}
+    >
       <div className="env-body absolute inset-0">
         {/* ground shadow */}
         <div className="absolute -bottom-6 left-[6%] right-[6%] h-9 rounded-[50%] bg-black/60 blur-xl" />
