@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { Check, Copy, ExternalLink, MapPin, Navigation } from "lucide-react";
 import { VENUE } from "@/lib/invitation";
-import { prefersReducedMotion } from "@/lib/animations";
+import { EASE_LUXE } from "@/lib/animations";
 import LocationQRCode from "./LocationQRCode";
 import { Divider, Sparkle } from "./Ornaments";
 import { Reveal, RevealItem } from "./Reveal";
@@ -30,42 +29,7 @@ async function copyText(text: string): Promise<boolean> {
 }
 
 export default function VenueSection() {
-  const card = useRef<HTMLDivElement>(null);
   const [copied, setCopied] = useState<"idle" | "ok" | "fail">("idle");
-
-  useEffect(() => {
-    if (!card.current || prefersReducedMotion()) return;
-    gsap.registerPlugin(ScrollTrigger);
-    const ctx = gsap.context(() => {
-      gsap.from(card.current, {
-        opacity: 0,
-        y: 80,
-        rotateX: 10,
-        transformPerspective: 1100,
-        duration: 1.4,
-        ease: "power3.out",
-        scrollTrigger: { trigger: card.current, start: "top 82%", once: true },
-        onComplete: () => {
-          if (card.current) {
-            card.current.style.boxShadow =
-              "0 0 0 1px rgba(255,208,96,0.4), 0 30px 70px -20px rgba(0,0,0,0.9), 0 0 50px rgba(255,86,128,0.12), 0 0 100px rgba(120,10,100,0.12)";
-          }
-        },
-      });
-      gsap.fromTo(
-        ".venue-sweep",
-        { xPercent: -150, opacity: 1 },
-        {
-          xPercent: 460,
-          onComplete: () => gsap.set(".venue-sweep", { opacity: 0 }),
-          duration: 2.2,
-          ease: "power2.inOut",
-          scrollTrigger: { trigger: card.current, start: "top 60%", once: true },
-        },
-      );
-    }, card);
-    return () => ctx.revert();
-  }, []);
 
   useEffect(() => {
     if (copied === "idle") return;
@@ -98,8 +62,11 @@ export default function VenueSection() {
         </RevealItem>
       </Reveal>
 
-      <div
-        ref={card}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.08 }}
+        transition={{ duration: 1.1, ease: EASE_LUXE }}
         className="relative mx-auto mt-8 sm:mt-10 max-w-3xl overflow-hidden rounded-[10px] p-5 sm:p-10"
         style={{
           background: "linear-gradient(145deg, #130920 0%, #0d0614 55%, #080410 100%)",
@@ -107,8 +74,6 @@ export default function VenueSection() {
           boxShadow: "0 30px 70px -20px rgba(0,0,0,0.9), 0 0 45px rgba(255,208,96,0.08)",
         }}
       >
-        <div className="venue-sweep pointer-events-none opacity-0 [mask-image:linear-gradient(to_bottom,transparent,black_30%,black_70%,transparent)] absolute inset-y-0 left-0 w-1/4 -skew-x-12 bg-gradient-to-r from-transparent via-[#ffd060]/40 to-transparent" />
-
         {/* Inner double frame */}
         <div className="pointer-events-none absolute inset-3 rounded-[7px] border border-[#ffd060]/25" />
 
@@ -176,7 +141,7 @@ export default function VenueSection() {
 
           <LocationQRCode url={VENUE.mapsUrl} />
         </div>
-      </div>
+      </motion.div>
 
       <div className="mt-16 flex justify-center text-[#ffd060]">
         <Divider />

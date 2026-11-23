@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import EnvelopeLanding from "./EnvelopeLanding";
 import InvitationLetter from "./InvitationLetter";
 import DateReveal from "./DateReveal";
@@ -22,8 +21,6 @@ export default function InvitationExperience() {
     document.body.classList.toggle("locked", stage === "sealed");
     if (stage === "sealed") {
       window.scrollTo({ top: 0 });
-    } else {
-      requestAnimationFrame(() => ScrollTrigger.refresh());
     }
     return () => document.body.classList.remove("locked");
   }, [stage]);
