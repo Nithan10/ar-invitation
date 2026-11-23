@@ -100,7 +100,7 @@ export default function VenueSection() {
 
       <div
         ref={card}
-        className="relative mx-auto mt-10 max-w-3xl overflow-hidden rounded-[10px] p-6 sm:p-10"
+        className="relative mx-auto mt-8 sm:mt-10 max-w-3xl overflow-hidden rounded-[10px] p-5 sm:p-10"
         style={{
           background: "linear-gradient(145deg, #130920 0%, #0d0614 55%, #080410 100%)",
           border: "1px solid rgba(255,208,96,0.35)",
@@ -131,29 +131,29 @@ export default function VenueSection() {
               </span>
             </address>
 
-            <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:justify-center md:justify-start">
+            <div className="mt-6 sm:mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:justify-center md:justify-start">
               {/* Get Directions — exact URL */}
               <a
                 href={VENUE.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-gradient-anim inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-royal text-xs font-bold tracking-[0.22em] text-white"
+                className="btn-gradient-anim flex w-full sm:w-auto max-w-[270px] mx-auto items-center justify-center gap-2 rounded-full px-5 py-3 font-royal text-[11px] sm:text-xs font-bold tracking-[0.16em] sm:tracking-[0.22em] text-white"
                 style={{
                   background: "linear-gradient(to right, #c0132a, #e11d48, #ff3060, #c0132a)",
                   backgroundSize: "200% 100%",
                   boxShadow: "0 0 24px rgba(225,29,72,0.5), 0 8px 20px rgba(0,0,0,0.5)",
                 }}
               >
-                <Navigation className="h-4 w-4" aria-hidden="true" />
-                GET DIRECTIONS
-                <ExternalLink className="h-3.5 w-3.5 opacity-70" aria-hidden="true" />
+                <Navigation className="h-4 w-4 shrink-0" aria-hidden="true" />
+                <span>GET DIRECTIONS</span>
+                <ExternalLink className="h-3.5 w-3.5 opacity-70 shrink-0" aria-hidden="true" />
               </a>
 
               {/* Copy address */}
               <button
                 type="button"
                 onClick={async () => setCopied((await copyText(VENUE.address)) ? "ok" : "fail")}
-                className="btn-gradient-anim inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-royal text-xs font-bold tracking-[0.22em] text-[#ffd060]"
+                className="btn-gradient-anim flex w-full sm:w-auto max-w-[270px] mx-auto items-center justify-center gap-2 rounded-full px-5 py-3 font-royal text-[11px] sm:text-xs font-bold tracking-[0.16em] sm:tracking-[0.22em] text-[#ffd060]"
                 style={{
                   background: "linear-gradient(to right, rgba(255,208,96,0.12), rgba(120,10,100,0.3), rgba(255,208,96,0.12))",
                   backgroundSize: "200% 100%",
@@ -162,11 +162,11 @@ export default function VenueSection() {
                 }}
               >
                 {copied === "ok" ? (
-                  <Check className="h-4 w-4 text-[#34d399]" aria-hidden="true" />
+                  <Check className="h-4 w-4 text-[#34d399] shrink-0" aria-hidden="true" />
                 ) : (
-                  <Copy className="h-4 w-4 text-[#ffd060]" aria-hidden="true" />
+                  <Copy className="h-4 w-4 text-[#ffd060] shrink-0" aria-hidden="true" />
                 )}
-                {copied === "ok" ? "COPIED!" : copied === "fail" ? "COPY FAILED" : "COPY ADDRESS"}
+                <span>{copied === "ok" ? "COPIED!" : copied === "fail" ? "COPY FAILED" : "COPY ADDRESS"}</span>
               </button>
             </div>
             <p className="sr-only" aria-live="polite">

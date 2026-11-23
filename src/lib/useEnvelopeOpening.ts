@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState, type RefObject } from "react";
 import gsap from "gsap";
 import { prefersReducedMotion } from "./animations";
+import { unlockAudio, preloadSounds, playSealCrack, playFlapSwish, playFlash } from "./sounds";
 
 /**
  * Coordinates the cinematic opening: seal cracks → wax breaks apart →
@@ -15,19 +16,31 @@ export function useEnvelopeOpening(
 ) {
   const [opening, setOpening] = useState(false);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
+  // Sync guard: a tap on the seal also bubbles to the envelope's own click
+  // handler and state updates are async, so `opening` alone can't stop a
+  // second (doubled) timeline + sound.
+  const startedRef = useRef(false);
 
-  useEffect(() => () => void tlRef.current?.kill(), []);
+  useEffect(() => {
+    preloadSounds();
+    return () => void tlRef.current?.kill();
+  }, []);
 
   const open = useCallback(() => {
     const root = scope.current;
-    if (!root || opening) return;
+    if (!root || opening || startedRef.current) return;
+    startedRef.current = true;
     setOpening(true);
+    // Must run synchronously inside the tap for mobile browsers to allow audio
+    unlockAudio();
     const q = gsap.utils.selector(root);
 
     if (prefersReducedMotion()) {
       tlRef.current = gsap
         .timeline({ onComplete: onOpened })
+        .call(playSealCrack)
         .to(q(".env-seal, .env-flap"), { opacity: 0, duration: 0.2 })
+        .call(playFlash)
         .to(flash.current, { opacity: 1, duration: 0.25 });
       return;
     }
@@ -40,7 +53,8 @@ export function useEnvelopeOpening(
       // 1. Quick, responsive pressure & crack (0.2s)
       .to(q(".env-seal"), { scale: 0.94, duration: 0.1, ease: "power1.in" })
       .to(q(".env-seal"), { scale: 1, duration: 0.18, ease: "back.out(2)" })
-      .to(q(".seal-crack"), { strokeDashoffset: 0, duration: 0.22, ease: "power1.inOut" }, "<-0.05")
+      .call(playSealCrack, [], "<-0.05")
+      .to(q(".seal-crack"), { strokeDashoffset: 0, duration: 0.22, ease: "power1.inOut" }, "<")
       .add("break", "+=0.04")
       // 2. Wax splits and falls away cleanly (0.5s)
       .to(q(".seal-crack, .seal-shadow"), { opacity: 0, duration: 0.15 }, "break")
@@ -64,6 +78,7 @@ export function useEnvelopeOpening(
       .set(q(".env-seal"), { pointerEvents: "none" }, "break+=0.3")
       // 3. Flap swings open smoothly in 3D (0.6s)
       .add("flap", "break+=0.15")
+      .call(playFlapSwish, [], "flap")
       .to(q(".env-flap"), { rotationX: 180, duration: 0.6, ease: "power2.inOut" }, "flap")
       .to(q(".env-flap-shadow"), { opacity: 0, duration: 0.25 }, "flap")
       .set(q(".env-flap"), { zIndex: 1 }, "flap+=0.3")
@@ -73,6 +88,7 @@ export function useEnvelopeOpening(
       .to(q(".env-letter"), { y: -stageH * 0.55, duration: 0.7, ease: "power2.out" }, "rise")
       .to(q(".landing-copy"), { opacity: 0, y: 14, duration: 0.3 }, "rise")
       // 5. Warm golden flash into reveal
+      .call(playFlash, [], "rise+=0.3")
       .to(flash.current, { opacity: 1, duration: 0.4, ease: "power2.in" }, "rise+=0.35");
   }, [scope, flash, onOpened, opening]);
 

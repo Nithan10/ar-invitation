@@ -38,7 +38,7 @@ export default function InvitationExperience() {
   return (
     <>
       <div className="vignette" aria-hidden="true" />
-      <main className="relative z-[1]">
+      <main className="relative z-[1] w-full max-w-full overflow-x-hidden">
         {stage === "sealed" ? (
           <EnvelopeLanding key={run} onOpened={handleOpened} />
         ) : (

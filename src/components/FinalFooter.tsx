@@ -9,7 +9,7 @@ import { StarField, SoftGlow } from "./Decorations";
 
 export default function FinalFooter({ onRestart }: { onRestart: () => void }) {
   return (
-    <footer className="relative overflow-hidden px-4 pb-14 pt-20 text-center"
+    <footer className="relative overflow-hidden px-4 pb-28 pt-20 text-center sm:pb-20"
       style={{
         background: "linear-gradient(to bottom, transparent 0%, rgba(14,5,22,0.9) 40%, #060409 100%)",
       }}
@@ -40,18 +40,18 @@ export default function FinalFooter({ onRestart }: { onRestart: () => void }) {
         </RevealItem>
 
         <RevealItem>
-          <p className="mt-8 flex items-center gap-3 font-royal text-[11px] tracking-[0.5em] text-[#e8d4c0]">
+          <p className="mt-8 flex items-center justify-center gap-2 font-royal text-[10px] tracking-[0.3em] text-[#e8d4c0] sm:gap-3 sm:text-[11px] sm:tracking-[0.5em]">
             <Sparkle className="text-[#ffd060]" /> 27 · 11 · 2026 <Sparkle className="text-[#ffd060]" />
           </p>
         </RevealItem>
 
         <RevealItem>
-          <p className="mt-3 font-serif text-xl italic text-[#e8d4c0]">See you at the table.</p>
+          <p className="mt-3 font-serif text-lg sm:text-xl italic text-[#e8d4c0]">See you at the table.</p>
         </RevealItem>
 
         {/* Closing rule */}
         <RevealItem>
-          <div className="mx-auto mt-6 h-px w-40 bg-gradient-to-r from-transparent via-[#ffd060] to-transparent" style={{ boxShadow: "0 0 10px rgba(255,208,96,0.4)" }} />
+          <div className="mx-auto mt-6 h-px w-36 sm:w-40 bg-gradient-to-r from-transparent via-[#ffd060] to-transparent" style={{ boxShadow: "0 0 10px rgba(255,208,96,0.4)" }} />
         </RevealItem>
 
         <RevealItem>
@@ -60,7 +60,7 @@ export default function FinalFooter({ onRestart }: { onRestart: () => void }) {
             onClick={onRestart}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.96 }}
-            className="mt-8 inline-flex items-center gap-2 rounded-full px-7 py-3 font-royal text-[11px] font-bold tracking-[0.28em] text-[#ffd060]"
+            className="mt-8 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-royal text-[10px] font-bold tracking-[0.2em] text-[#ffd060] sm:px-7 sm:text-[11px] sm:tracking-[0.28em]"
             style={{
               background: "linear-gradient(135deg, rgba(255,208,96,0.1), rgba(120,10,100,0.25), rgba(255,208,96,0.1))",
               border: "1px solid rgba(255,208,96,0.6)",

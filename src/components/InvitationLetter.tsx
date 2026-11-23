@@ -75,11 +75,11 @@ export default function InvitationLetter() {
         </motion.p>
 
         {/* Event detail pills */}
-        <motion.div {...line(1.65)} className="mt-8 flex flex-wrap items-center justify-center gap-3">
+        <motion.div {...line(1.65)} className="mt-7 sm:mt-8 flex flex-wrap items-center justify-center gap-2 sm:gap-3">
           {["27 NOVEMBER", "FRIDAY", "7:30 PM"].map((tag, i) => (
             <span
               key={i}
-              className="rounded-full px-4 py-1.5 font-royal text-[10px] font-bold tracking-[0.28em] text-[#ffd060] sm:text-[11px]"
+              className="rounded-full px-3.5 py-1 font-royal text-[9px] font-bold tracking-[0.18em] text-[#ffd060] sm:px-4 sm:py-1.5 sm:text-[11px] sm:tracking-[0.28em]"
               style={{
                 background: i === 0
                   ? "linear-gradient(135deg, rgba(255,208,96,0.18), rgba(180,30,100,0.25))"

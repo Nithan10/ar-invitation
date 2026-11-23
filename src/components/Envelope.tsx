@@ -34,7 +34,7 @@ export default function Envelope({ onSealClick, disabled }: Props) {
         <div className="env-letter absolute z-[2] left-[5%] right-[5%] top-[5%] h-[88%] rounded-[4px] bg-gradient-to-b from-[#fffefb] via-[#f7eedf] to-[#e8d7be] shadow-[0_4px_25px_rgba(0,0,0,0.6)]">
           <div className="absolute inset-[4%] sm:inset-[5%] flex flex-col items-center justify-start border border-[#b89354] pt-[5%] text-center">
             <div className="absolute inset-[3px] border border-[#d4af37]/40" />
-            <p className="font-royal text-[clamp(8px,1.8vw,12px)] font-bold tracking-[0.3em] text-[#846328]">
+            <p className="pl-[0.3em] font-royal text-[clamp(8px,1.8vw,12px)] font-bold tracking-[0.3em] text-[#846328]">
               YOU ARE CORDIALLY INVITED
             </p>
             <p className="mt-[2%] font-script text-[clamp(20px,5.5vw,42px)] leading-none text-[#982e35]">
@@ -69,7 +69,7 @@ export default function Envelope({ onSealClick, disabled }: Props) {
             <path d="M0 200 L150 94 L300 200" fill="none" stroke="#ffd778" strokeOpacity=".55" strokeWidth="1" />
             <path d="M0 199 L150 95.5 L300 199" fill="none" stroke="#000000" strokeOpacity=".45" strokeWidth="1" />
           </svg>
-          <p className="absolute bottom-[7%] left-0 right-0 text-center font-royal text-[clamp(7px,1.6vw,11px)] tracking-[0.45em] text-[#ffd778] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+          <p className="absolute bottom-[7%] left-0 right-0 pl-[0.45em] text-center font-royal text-[clamp(7px,1.6vw,11px)] tracking-[0.45em] text-[#ffd778] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
             A PERSONAL INVITATION
           </p>
         </div>

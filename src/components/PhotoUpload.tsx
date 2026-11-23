@@ -24,7 +24,7 @@ const MAX_BYTES = 10 * 1024 * 1024;
  */
 function UniqueRoyalFrame({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative mx-auto" style={{ width: "min(86vw, 320px)" }}>
+    <div className="relative mx-auto" style={{ width: "min(78vw, 275px)" }}>
       {/* 1. Ambient Golden-Rose Backglow */}
       <div
         className="pointer-events-none absolute -inset-6 rounded-3xl"
@@ -126,7 +126,7 @@ function UniqueRoyalFrame({ children }: { children: React.ReactNode }) {
             <div
               className="relative overflow-hidden rounded-[6px]"
               style={{
-                aspectRatio: "3/4",
+                aspectRatio: "3/3.8",
                 background: "#08040d",
                 boxShadow: "inset 0 0 30px rgba(0,0,0,0.85)",
               }}
@@ -179,11 +179,11 @@ function UniqueRoyalFrame({ children }: { children: React.ReactNode }) {
           </svg>
 
           {/* Left & Right Fluted Diamond Accent Studs */}
-          <div className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 flex flex-col gap-3">
-            <div className="h-2 w-2 rotate-45 rounded-sm bg-[#ffd060] shadow-[0_0_8px_#ffd060]" />
+          <div className="pointer-events-none absolute left-1 top-1/2 -translate-y-1/2 flex flex-col gap-3">
+            <div className="h-1.5 w-1.5 rotate-45 rounded-sm bg-[#ffd060] shadow-[0_0_6px_#ffd060]" />
           </div>
-          <div className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 flex flex-col gap-3">
-            <div className="h-2 w-2 rotate-45 rounded-sm bg-[#ffd060] shadow-[0_0_8px_#ffd060]" />
+          <div className="pointer-events-none absolute right-1 top-1/2 -translate-y-1/2 flex flex-col gap-3">
+            <div className="h-1.5 w-1.5 rotate-45 rounded-sm bg-[#ffd060] shadow-[0_0_6px_#ffd060]" />
           </div>
         </div>
       </div>
@@ -191,7 +191,7 @@ function UniqueRoyalFrame({ children }: { children: React.ReactNode }) {
       {/* 5. Suspended Gilded Cartouche Nameplate */}
       <div className="relative -mt-4 flex justify-center" style={{ zIndex: 20 }}>
         <div
-          className="relative flex items-center gap-2 rounded-full px-5 py-1.5 font-royal text-[11px] font-bold tracking-[0.3em] text-[#ffd060]"
+          className="relative flex items-center gap-1.5 sm:gap-2 rounded-full px-4 py-1 sm:px-5 sm:py-1.5 font-royal text-[10px] sm:text-[11px] font-bold tracking-[0.2em] sm:tracking-[0.3em] text-[#ffd060]"
           style={{
             background: "linear-gradient(135deg, #1f1105 0%, #2f1c08 50%, #170d04 100%)",
             border: "1.5px solid #ffd060",
@@ -258,13 +258,13 @@ export default function PhotoUpload() {
 
         <Reveal className="relative flex flex-col items-center text-center">
           <RevealItem>
-            <p className="font-royal text-xs font-semibold tracking-[0.55em] text-[#ffd060] sm:text-sm">
+            <p className="whitespace-nowrap font-royal text-[10px] sm:text-xs font-semibold tracking-[0.22em] sm:tracking-[0.45em] text-[#ffd060]">
               ✦ &nbsp;AN EXCLUSIVE EVENING&nbsp; ✦
             </p>
           </RevealItem>
           <RevealItem>
             <h2
-              className="mb-14 mt-3 font-royal text-[clamp(1.4rem,4.5vw,2.4rem)] font-bold tracking-[0.07em] gold-text gold-sweep"
+              className="mb-7 sm:mb-10 mt-2.5 font-royal text-[clamp(1.3rem,4.2vw,2.2rem)] font-bold tracking-[0.06em] gold-text gold-sweep"
             >
               LOOKING FORWARD TO CELEBRATING
             </h2>

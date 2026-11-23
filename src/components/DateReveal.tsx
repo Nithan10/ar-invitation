@@ -53,30 +53,30 @@ function Countdown({ targetISO }: { targetISO: string }) {
         <span className="pulse-ring" />
         <span className="pulse-ring r2" />
         <div
-          className="relative flex h-14 w-14 items-center justify-center rounded-xl sm:h-16 sm:w-16"
+          className="relative flex h-12 w-12 sm:h-16 sm:w-16 items-center justify-center rounded-xl"
           style={{
             background: "linear-gradient(145deg, #1f0a2a 0%, #2d0535 100%)",
             border: "1px solid rgba(255,208,96,0.4)",
             boxShadow: "0 0 18px rgba(255,86,128,0.2), inset 0 1px 0 rgba(255,208,96,0.15)",
           }}
         >
-          <span className="font-serif text-2xl font-bold text-[#ffd060] sm:text-3xl" style={{ textShadow: "0 0 12px rgba(255,208,96,0.6)" }}>
+          <span className="font-serif text-xl sm:text-3xl font-bold text-[#ffd060]" style={{ textShadow: "0 0 12px rgba(255,208,96,0.6)" }}>
             {String(v).padStart(2, "0")}
           </span>
         </div>
       </div>
-      <span className="mt-2 font-royal text-[9px] font-semibold tracking-[0.3em] text-[#c8a0d0]/80 sm:text-[10px]">{label}</span>
+      <span className="mt-1.5 font-royal text-[8px] sm:text-[10px] font-semibold tracking-[0.2em] sm:tracking-[0.3em] text-[#c8a0d0]/80">{label}</span>
     </div>
   );
 
   return (
-    <div className="mt-10 flex items-start justify-center gap-3 sm:gap-5" aria-label="Countdown to event">
+    <div className="mt-8 sm:mt-10 flex items-start justify-center gap-1.5 sm:gap-4" aria-label="Countdown to event">
       <Unit v={diff.d} label="DAYS" />
-      <span className="mt-4 font-serif text-2xl font-bold text-[#ffd060]/60">:</span>
+      <span className="mt-2.5 sm:mt-4 font-serif text-xl sm:text-2xl font-bold text-[#ffd060]/60">:</span>
       <Unit v={diff.h} label="HRS" />
-      <span className="mt-4 font-serif text-2xl font-bold text-[#ffd060]/60">:</span>
+      <span className="mt-2.5 sm:mt-4 font-serif text-xl sm:text-2xl font-bold text-[#ffd060]/60">:</span>
       <Unit v={diff.m} label="MIN" />
-      <span className="mt-4 font-serif text-2xl font-bold text-[#ffd060]/60">:</span>
+      <span className="mt-2.5 sm:mt-4 font-serif text-xl sm:text-2xl font-bold text-[#ffd060]/60">:</span>
       <Unit v={diff.s} label="SEC" />
     </div>
   );
@@ -111,7 +111,7 @@ export default function DateReveal() {
       <SoftGlow className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" color="rgba(60,10,100,0.35)" size={550} />
 
       <div className="relative mx-auto max-w-3xl text-center">
-        <h2 id="date-heading" className="date-label font-royal text-xs font-semibold tracking-[0.55em] text-[#ffd060] sm:text-sm">
+        <h2 id="date-heading" className="date-label font-royal text-[10px] sm:text-xs font-semibold tracking-[0.3em] sm:tracking-[0.55em] text-[#ffd060]">
           ✦&nbsp; SAVE THE DATE &nbsp;✦
         </h2>
         <p className="sr-only">
@@ -124,7 +124,7 @@ export default function DateReveal() {
           {/* Month label with neon glow */}
           <Chars
             text={EVENT.month}
-            className="date-side font-royal text-[clamp(1.2rem,4.2vw,2rem)] font-bold tracking-[0.42em] neon-rose"
+            className="date-side font-royal text-[clamp(1.1rem,3.8vw,1.9rem)] font-bold tracking-[0.25em] sm:tracking-[0.42em] neon-rose"
           />
 
           <div className="mt-3 grid grid-cols-[1fr_auto_1fr] items-center gap-2 sm:gap-10">

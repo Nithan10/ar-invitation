@@ -44,7 +44,7 @@ export const RSVP = {
    * WhatsApp number in international format, digits only (e.g. "919876543210").
    * Leave empty to let guests choose the chat themselves in WhatsApp.
    */
-  whatsappNumber: "",
+  whatsappNumber: "919342638763",
   message: `Hi Arun! I'd love to join the dinner at ${"Arabian Majlis"} on Friday, 27 November 2026 at 7:30 PM. Count me in! ✨`,
 } as const;
 

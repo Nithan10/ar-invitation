@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion } from "framer-motion";
-import { MousePointerClick } from "lucide-react";
+import { MousePointerClick, Volume2 } from "lucide-react";
 import Envelope from "./Envelope";
 import DustParticles from "./DustParticles";
 import { Sparkle } from "./Ornaments";
@@ -21,7 +21,7 @@ export default function EnvelopeLanding({ onOpened }: Props) {
     <section
       ref={scope}
       aria-label="Sealed invitation"
-      className="relative flex min-h-[100dvh] flex-col items-center justify-center overflow-hidden px-4 py-6 sm:py-10"
+      className="relative flex min-h-[100dvh] flex-col items-center justify-center overflow-hidden px-4 pb-[max(5.5rem,env(safe-area-inset-bottom))] pt-[max(1.5rem,env(safe-area-inset-top))] sm:py-10"
     >
       {/* ── Background layer ── */}
       {/* Constellation starfield */}
@@ -56,9 +56,9 @@ export default function EnvelopeLanding({ onOpened }: Props) {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, ease: EASE_LUXE, delay: 0.1 }}
-        className="relative z-10 mb-6 text-center sm:mb-8"
+        className="relative z-10 mb-5 text-center sm:mb-8"
       >
-        <p className="font-royal text-[10px] font-semibold tracking-[0.55em] text-[#ffd060]/70 sm:text-xs">
+        <p className="whitespace-nowrap font-royal text-[10px] font-semibold tracking-[0.22em] text-[#ffd060]/75 sm:text-xs sm:tracking-[0.45em]">
           ✦ &nbsp;AN EXCLUSIVE EVENING&nbsp; ✦
         </p>
       </motion.div>
@@ -77,14 +77,14 @@ export default function EnvelopeLanding({ onOpened }: Props) {
       </motion.div>
 
       <motion.div
-        className="landing-copy relative mt-8 flex flex-col items-center text-center sm:mt-10"
+        className="landing-copy relative mt-7 flex w-full max-w-md flex-col items-center px-2 text-center sm:mt-10 sm:max-w-xl"
         initial="hidden"
         animate="show"
         variants={{ hidden: {}, show: { transition: { staggerChildren: 0.2, delayChildren: 1.2 } } }}
       >
         <motion.h1
           variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0, transition: { duration: 1.1, ease: EASE_LUXE } } }}
-          className="gold-text font-serif text-[clamp(1.65rem,5vw,2.9rem)] font-bold leading-tight"
+          className="gold-text text-balance font-serif text-[clamp(1.55rem,6.4vw,2.9rem)] font-bold leading-[1.15]"
         >
           You&rsquo;ve Received a Special Invitation
         </motion.h1>
@@ -100,27 +100,32 @@ export default function EnvelopeLanding({ onOpened }: Props) {
           onClick={open}
           disabled={opening}
           variants={{ hidden: { opacity: 0, scale: 0.9 }, show: { opacity: 1, scale: 1, transition: { duration: 1.3 } } }}
-          className="relative mt-6 overflow-hidden rounded-full px-7 py-3 font-royal text-[11px] font-bold tracking-[0.38em] text-white sm:text-xs shimmer-border"
+          className="shimmer-border relative mt-5 max-w-full overflow-hidden whitespace-nowrap rounded-full px-5 py-3 font-royal text-[10px] font-bold tracking-[0.24em] text-white min-[380px]:text-[11px] sm:mt-6 sm:px-7 sm:text-xs sm:tracking-[0.38em]"
           style={{
             background: "linear-gradient(135deg, #7a1040 0%, #3a0a60 50%, #7a1040 100%)",
             backgroundSize: "200% 100%",
             boxShadow: "0 0 24px rgba(255,86,128,0.35), 0 0 48px rgba(120,20,160,0.2)",
           }}
         >
-          <span className="relative z-10 flex items-center gap-3">
-            <Sparkle className="text-[#ffd060]" />
-            <span className="shimmer-hint">CLICK THE SEAL TO OPEN</span>
-            <Sparkle className="text-[#ffd060]" />
+          <span className="relative z-10 flex items-center justify-center gap-2.5 sm:gap-3">
+            <Sparkle className="shrink-0 text-[#ffd060]" />
+            {/* -mr cancels the trailing letter-space so the label sits centred */}
+            <span className="shimmer-hint -mr-[0.24em] sm:-mr-[0.38em]">
+              <span className="sm:hidden">TAP THE SEAL TO OPEN</span>
+              <span className="hidden sm:inline">CLICK THE SEAL TO OPEN</span>
+            </span>
+            <Sparkle className="shrink-0 text-[#ffd060]" />
           </span>
         </motion.button>
 
         <motion.p
           variants={{ hidden: { opacity: 0 }, show: { opacity: 1, transition: { duration: 1.3 } } }}
-          className="mt-3 flex items-center gap-2 text-xs text-[#d4c0b0]/80"
+          className="mt-3 flex items-center justify-center gap-2 text-xs text-[#d4c0b0]/80"
         >
-          <MousePointerClick className="h-3.5 w-3.5 animate-bounce text-[#ffd060]" aria-hidden="true" />
+          <MousePointerClick className="hidden h-3.5 w-3.5 animate-bounce text-[#ffd060] sm:block" aria-hidden="true" />
           <span className="hidden sm:inline">Move your cursor over the seal to discover the magic</span>
-          <span className="sm:hidden font-semibold text-[#ffd060]">Tap the red AR seal to open</span>
+          <Volume2 className="h-3.5 w-3.5 text-[#ffd060] sm:hidden" aria-hidden="true" />
+          <span className="sm:hidden">Turn your sound on for the full experience</span>
         </motion.p>
       </motion.div>
 
